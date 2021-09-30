@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="md" class="ion-text-center">
+      <ion-back-button [defaultHref]="previousUrl" icon="chevron-back-outline" (click)="goBack()"> </ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'PAYMENT' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-row class="ion-padding-horizontal">
+    <ion-col size="12">
+      <ion-text class="text-label">
+        {{ 'TOTAL_PAYMENT' | translate }}
+      </ion-text>
+    </ion-col>
+    <ion-col size="12">
+      <ion-text class="text-price"> Rp. {{ paymentSummary?.final_price | number: '1.0-0':'id' }} </ion-text>
+    </ion-col>
+  </ion-row>
+  <div class="divider"></div>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="paymentMethod">
+      <ion-list-header>
+        <ion-label class="text-label"> {{ 'PAY_METHOD' | translate }} </ion-label>
+      </ion-list-header>
+      <div *ngFor="let item of paymentMethods">
+        <ion-item lines="none">
+          <ion-radio [value]="item.payment_method_id" slot="start" color="success"></ion-radio>
+          <ion-label class="text-label ion-text-wrap">
+            {{ item.name }}
+          </ion-label>
+        </ion-item>
+        <ion-row class="padding-payment-icon" *ngIf="item?.image && item?.image?.length">
+          <ion-col>
+            <span *ngFor="let img of item?.image">
+              <img
+                [src]="img"
+                class="payment-icon"
+                onerror="this.onerror=null;this.src='assets/images/placeholder-product.svg'"
+              />
+            </span>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-row class="ion-padding">
+    <ion-col>
+      <ion-button color="success" expand="block" shape="round" (click)="next()" [disabled]="isOnFetch">
+        {{ 'NEXT' | translate }} <ion-spinner *ngIf="isOnFetch" name="dots" color="dark"></ion-spinner>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

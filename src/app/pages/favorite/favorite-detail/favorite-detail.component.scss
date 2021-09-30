@@ -1,0 +1,99 @@
+.ic-love {
+  font-size: 10px;
+}
+
+.product {
+  &-brand {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 2.17;
+    letter-spacing: normal;
+    color: #262626;
+  }
+  &-name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.07;
+    letter-spacing: normal;
+    color: #262626;
+  }
+  &-size {
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #262626;
+    width: 95px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &-price {
+    font-size: 10px;
+    width: 95px;
+    font-weight: 700;
+    line-height: 3.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: super;
+    color: #f8a345;
+    &.strikethrough {
+      text-decoration: line-through;
+    }
+  }
+  &-final-price {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #99cc33;
+    width: 95px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.product-img {
+  width: 200px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.product-checkbox {
+  margin-right: 16px;
+}
+
+.product-price-with-unit {
+  font-weight: bold;
+  font-size: 12px;
+  .product-unit {
+    padding-left: 5px;
+    font-weight: 400;
+    color: gray;
+  }
+}
+
+.thumb-product {
+  display: block;
+  margin: auto;
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+}
+
+.btn-action {
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.total-item {
+  color: #262626;
+  font-size: 12px;
+}
+
+.text-select-all {
+  font-weight: bold;
+  font-size: 12px;
+}

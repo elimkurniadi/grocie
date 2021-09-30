@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-title>{{'MY_CART' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="pullToRefresh($event)" pullFactor="1.2" pullMin="20" pullMax="80">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid class="ion-no-padding h-100" *ngIf="fetching">
+    <app-cart-skeleton></app-cart-skeleton>
+  </ion-grid>
+
+  <ion-grid class="ion-no-padding h-100" *ngIf="cartList?.length > 0 && !fetching">
+    <ion-row class="ion-padding-horizontal ion-justify-content-between">
+      <ion-col size="12">
+        <app-item-list
+          [cartData]="cartList"
+          (afterDeleteItem)="fetchCartList()"
+          (quantityChange)="updateTotalPrice($event)"
+        ></app-item-list>
+      </ion-col>
+    </ion-row>
+    <div class="divider"></div>
+    <ng-container *ngIf="unprocessableCartList.length > 0">
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-text class="text-unprocessable"> {{unprocessableCartList.length}} item(s) cannot be processed </ion-text>
+        </ion-col>
+      </ion-row>
+      <div class="divider"></div>
+      <ion-row class="ion-padding-horizontal ion-justify-content-between">
+        <ion-col size="12">
+          <app-item-list-inactive [cartData]="unprocessableCartList" (afterCta)="fetchCartList()">
+          </app-item-list-inactive>
+        </ion-col>
+      </ion-row>
+      <div class="divider"></div>
+    </ng-container>
+    <ion-row class="ion-margin-top" *ngIf="relatedProductList?.length > 0">
+      <ion-col size="12" style="padding-left: 16px">
+        <span class="section-description">{{'CART_EXTRA' | translate }}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <app-slide-product [products]="relatedProductList"></app-slide-product>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="cartList?.length <= 0 && !fetching" class="ion-text-center ion-padding ion-margin">
+    <app-cart-empty></app-cart-empty>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-padding-horizontal" *ngIf="cartList?.length > 0">
+  <ion-toolbar mode="md">
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-justify-content-center ion-no-padding">
+        <ion-col size="6" class="ion-no-padding">
+          <span>{{'TOTAL_PRICE' | translate}}</span> <br />
+          <span><b>Rp. {{totalPrice | number}}</b></span>
+        </ion-col>
+        <ion-col size="6" class="ion-text-right ion-no-padding">
+          <ion-button
+            color="limegreen"
+            size="small"
+            [disabled]="unprocessableCartList.length > 0"
+            (click)="goToCheckout()"
+          >
+            {{'CHECKOUT' | translate}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

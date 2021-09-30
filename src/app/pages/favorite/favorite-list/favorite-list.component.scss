@@ -1,0 +1,53 @@
+.favorite-item {
+  border: 1px solid var(--ion-color-success);
+  border-radius: 25px;
+  color: var(--ion-color-success);
+}
+
+.favorite-name {
+  font-weight: bold;
+}
+
+.add-favorite,
+.text-see-list {
+  font-size: 14px;
+}
+
+.add-favorite {
+  color: var(--ion-color-primary);
+  border: 1px solid var(--ion-color-primary);
+  padding: 4px 12px;
+  border-radius: 13px;
+  margin: 14px 14px;
+}
+
+.text-empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.21;
+  color: var(--ion-color-primary);
+}
+
+.text-empty-desc {
+  font-size: 14px;
+  line-height: 1.33;
+  color: #262626;
+}
+
+.custom-option-left {
+  height: 93%;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: 2px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.custom-option-right {
+  height: 93%;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: 2px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}

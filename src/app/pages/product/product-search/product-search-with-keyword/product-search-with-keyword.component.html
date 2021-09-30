@@ -1,0 +1,22 @@
+<ion-row class="ion-padding-vertical">
+  <ion-col size="9" class="ion-padding-start ion-padding-bottom-small">
+    <ion-text class="search-title"> {{ 'SEARCH_RESULT' | translate }}</ion-text>
+  </ion-col>
+  <ion-col size="3" class="ion-text-right ion-padding-end">
+    <ion-text class="section-see-all" (click)="goToProductList()">
+      {{ 'SEE_ALL' | translate }}
+    </ion-text>
+  </ion-col>
+  <ion-col size="12">
+    <app-slide-product [products]="products"></app-slide-product>
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col size="12" class="ion-padding-horizontal">
+    <ion-text class="search-title"> {{ 'RELATED_BRAND' | translate }}</ion-text>
+  </ion-col>
+  <ion-col size="12">
+    <app-slide-brand [brands]="brands"></app-slide-brand>
+  </ion-col>
+</ion-row>

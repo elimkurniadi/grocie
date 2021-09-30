@@ -1,0 +1,110 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" mode="md">
+      <ion-back-button icon="chevron-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'EDIT_PROFILE' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-padding h-100">
+    <ion-row class="ion-justify-content-between">
+      <ion-col size="12" class="ion-no-padding">
+        <form [formGroup]="fg" *ngIf="fg">
+          <ion-row class="ion-align-items-center bg-white">
+            <ion-col size="2" class="ion-no-padding">
+              <img width="80%" class="rounded profile-img" [src]="selectedImage" />
+            </ion-col>
+            <ion-col size="7">
+              <ion-row>
+                <ion-col size="12" class="ion-no-padding">
+                  <ion-text color="dark">{{'PROFILE_PICTURE' | translate}}</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <!-- <ion-col size="3" class="ion-no-padding">
+              <ion-button
+                expand="block"
+                fill="outline"
+                color="success"
+                size="small"
+                (click)="showActionSheet()"
+                class="btn-edit-profile"
+              >
+                {{'CHANGE' | translate}}
+              </ion-button>
+            </ion-col> -->
+            <ion-col size="3" class="ion-text-right" (click)="showActionSheet()">
+              <ion-text style="line-height: 16px" class="section-see-all"><b>{{ 'CHANGE' | translate }}</b></ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-item lines="none" class="form-group">
+            <ion-label position="stacked">{{'NAME' | translate}}</ion-label>
+            <ion-input
+              type="text"
+              placeholder="{{'NAME_PLACEHOLDER' | translate}}"
+              class="default-theme"
+              formControlName="full_name"
+            ></ion-input>
+            <small *ngIf="fg.controls.full_name.dirty">{{fg.controls.full_name.errors?.required?.message}}</small>
+          </ion-item>
+
+          <ion-item lines="none" class="form-group">
+            <ion-label position="stacked">{{'EMAIL_ADDRESS' | translate}}</ion-label>
+            <ion-input
+              type="email"
+              placeholder="{{'YOUR_EMAIL_ADDRESS' | translate}}"
+              class="default-theme"
+              formControlName="email"
+              disabled
+            ></ion-input>
+            <small *ngIf="fg.controls.email.dirty"
+              >{{fg.controls.email.errors?.required?.message}} {{fg.controls.email.errors?.email?.message}}</small
+            >
+          </ion-item>
+
+          <ion-item lines="none" class="form-group">
+            <ion-label position="stacked">{{'PHONE_NUMBER' | translate}}</ion-label>
+            <ion-input
+              type="tel"
+              placeholder="{{'PHONE_NUMBER' | translate}}"
+              class="default-theme"
+              formControlName="phone"
+              disabled
+            ></ion-input>
+            <small *ngIf="fg.controls.phone.dirty"
+              >{{fg.controls.phone.errors?.required?.message}} {{fg.controls.phone.errors?.numeric?.message}}
+              {{fg.controls.phone.errors?.minLength?.message}} {{fg.controls.phone.errors?.maxLength?.message}}</small
+            >
+          </ion-item>
+        </form>
+      </ion-col>
+
+      <!-- <ion-button expand="block" shape="round" fill="outline" color="success">
+          {{'CHANGE_PASSWORD' | translate}}
+        </ion-button> -->
+
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding" [routerLink]="['/change-password']" style="margin-top:12px;">
+        <ion-text style="line-height: 16px" class="section-see-all">
+          <b>{{ 'CHANGE_PASSWORD' | translate }}</b>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding-horizontal">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="updateProfile()" expand="block" shape="round" color="success" [disabled]="fg?.pristine">
+          {{'UPDATE' | translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

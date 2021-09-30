@@ -1,0 +1,63 @@
+<ion-header class="ion-no-border">
+  <ion-grid class="ion-padding-horizontal">
+    <ion-row class="ion-no-padding">
+      <ion-col size="12" class="ion-no-padding">
+        <ion-row class="ion-no-padding ion-align-items-center">
+          <ion-col class="ion-no-padding">
+            <ion-text class="filter-title"> {{ 'FILTER' | translate }}</ion-text> <br />
+          </ion-col>
+          <ion-col class="ion-text-right ion-no-padding-end">
+            <ion-icon name="close" color="light" (click)="dismiss()"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-padding-horizontal">
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-no-padding">
+        <ion-text class="filter-label">
+          <b>{{ 'PRICE_RANGE' | translate }}</b
+          ><br />
+          <span>Type in your preferred price range</span>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding">
+      <ion-col size="5.5" class="ion-no-padding">
+        <ion-item style="--padding-start: 0px">
+          <ion-input
+            placeholder="{{ 'LOWEST' | translate }}"
+            [(ngModel)]="minPrice"
+            type="number"
+            style="--padding-bottom: 0px"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="1"> </ion-col>
+      <ion-col size="5.5" class="ion-no-padding">
+        <ion-item style="--padding-start: 0px">
+          <ion-input
+            placeholder="{{ 'HIGHEST' | translate }}"
+            [(ngModel)]="maxPrice"
+            type="number"
+            style="--padding-bottom: 0px"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-row class="ion-padding-horizontal">
+    <ion-col class="ion-padding-bottom">
+      <ion-button expand="full" shape="round" color="success" (click)="apply()">
+        {{ 'APPLY' | translate }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

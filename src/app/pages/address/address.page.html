@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" mode="md">
+      <ion-back-button icon="chevron-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'ADDRESS_LIST' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="fetchAddressList($event)" pullFactor="1.2" pullMin="20" pullMax="80">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid class="ion-padding-top ion-padding-horizontal h-100">
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <ion-col size="6">
+        <span>
+          <b>{{'ADDRESS_LIST' | translate}}</b>
+        </span>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <ion-text color="primary">
+          <small [routerLink]="['/address/form']"><b>+ {{'ADD_NEW_ADDRESS' | translate}}</b></small>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <app-card-address
+          [addressList]="listAddress"
+          [isSelectMode]="selectMode"
+          (action)="fetchAddressList()"
+        ></app-card-address>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

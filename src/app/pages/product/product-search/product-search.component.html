@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="md" class="ion-text-center">
+      <ion-back-button icon="chevron-back" defaultHref="/tabs/home" icon="chevron-back-outline"> </ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'SEARCH' | translate }}</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar mode="ios">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="10">
+        <ion-searchbar
+          class="custom-search"
+          mode="ios"
+          (ionChange)="searchProduct($event)"
+          debounce="1000"
+          value="{{ keyword }}"
+          #searchBar
+        ></ion-searchbar>
+
+        <div
+          class="ion-no-padding ion-align-self-center ion-text-center scan-icon-container"
+          (click)="scanQR(); $event.stopPropagation()"
+        >
+          <img src="assets/images/scan.svg" class="scan-icon" />
+        </div>
+      </ion-col>
+      <ion-col size="2">
+        <div (click)="showFilter()" class="ion-align-self-center">
+          <ion-icon name="funnel" slot="start" size="medium" class="filter-icon" color="primary"></ion-icon>
+          <ion-text class="header-action-size" color="primary"> {{ 'FILTER' | translate }} </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-no-padding">
+    <app-product-search-without-keyword
+      *ngIf="!keyword"
+      [recentSearches]="recentSearches"
+      (assignKeyword)="assignKeyword($event)"
+      [products]="popularProducts"
+    ></app-product-search-without-keyword>
+    <app-product-search-with-keyword
+      *ngIf="keyword"
+      [keyword]="keyword"
+      [products]="products"
+      [brands]="brands"
+      (redirectToList)="goToProductList()"
+    ></app-product-search-with-keyword>
+  </ion-grid>
+</ion-content>

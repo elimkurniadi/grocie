@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" mode="md">
+      <ion-back-button icon="chevron-back" defaultHref="/login"> </ion-back-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-padding-top">
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding">
+        <form (ngSubmit)="login()" #loginForm="ngForm" [formGroup]="fg">
+          <ion-item lines="none" class="form-group">
+            <ion-label position="stacked">E-mail Address</ion-label>
+            <ion-input
+              class="default-theme"
+              formControlName="email"
+              placeholder="{{ 'YOUR_EMAIL_ADDRESS' | translate }}"
+            ></ion-input>
+            <small *ngIf="fg.controls.email.dirty">{{ fg.controls.email.errors?.required?.message }}</small>
+            <small *ngIf="fg.controls.email.dirty">{{ fg.controls.email.errors?.email?.message }}</small>
+          </ion-item>
+          <ion-item lines="none" class="padding-form" class="form-group">
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input
+              class="default-theme"
+              formControlName="password"
+              placeholder="{{ 'YOUR_PASSWORD' | translate }}"
+              [type]="showPass ? 'text' : 'password'"
+            ></ion-input>
+            <ion-icon
+              (click)="showPass = !showPass"
+              [name]="showPass ? 'eye-off-outline' : 'eye-outline'"
+              size="small"
+              slot="end"
+            ></ion-icon>
+            <small *ngIf="fg.controls.password.dirty">{{ fg.controls.password.errors?.required?.message }}</small>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding">
+      <ion-col>
+        <ion-text class="login-redirect-text ion-padding-top" color="limegreen" [routerLink]="['/forgot-password']"
+          ><b>{{ 'FORGOT_PASSWORD' | translate }}</b>
+        </ion-text>
+      </ion-col>
+      <ion-col class="ion-text-right">
+        <ion-text class="login-redirect-text">
+          {{ 'NEW_HERE' | translate }}?
+          <a class="link" [routerLink]="['/register']">{{ 'REGISTER_NOW' | translate }}</a>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid> </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-row class="ion-padding-bottom">
+    <ion-col class="ion-padding">
+      <ion-button
+        class="login-button"
+        expand="block"
+        color="limegreen"
+        (click)="loginForm.ngSubmit.emit()"
+        [disabled]="isOnFetch"
+      >
+        {{ 'LOGIN' | translate }} <ion-spinner *ngIf="isOnFetch" name="dots" color="dark"></ion-spinner
+      ></ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

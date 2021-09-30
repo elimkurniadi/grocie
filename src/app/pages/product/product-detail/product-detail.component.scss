@@ -1,0 +1,142 @@
+.img-product {
+  max-height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+ion-header {
+  border: unset !important;
+}
+
+.text-desc {
+  font-size: 12px;
+  line-height: 1.2;
+  color: #262626;
+  &-label {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.17;
+    letter-spacing: normal;
+    color: #262626;
+  }
+}
+
+.product {
+  &-brand {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #262626;
+  }
+  &-name {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #262626;
+  }
+  &-size {
+    font-size: 15px !important;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #262626;
+    width: 95px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &-final-price {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #99cc33;
+    width: 95px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &-price {
+    font-size: 17px;
+    width: 95px;
+    font-weight: 700;
+    line-height: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: super;
+    color: #f8a345;
+  }
+  &-out-of-stock {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #d61414;
+  }
+}
+
+.price-linethrough {
+  text-decoration: line-through;
+}
+
+.scan-icon-container {
+  position: absolute;
+  top: 6px;
+  height: 25px;
+  right: 16px;
+  // .scan-icon {
+  //   font-size: 25px;
+  //   height: 100%;
+  // }
+}
+
+ion-searchbar.custom-search {
+  height: 36px;
+  padding: 12px !important;
+  margin-top: -1px;
+
+  // .searchbar-input-container input {
+  //   padding-left: 30px !important;
+  //   border: solid 0.5px #e5e5e5 !important;
+  //   border-radius: 5px;
+  //   background-color: white;
+  // }
+}
+
+.disabled {
+  opacity: 0.5;
+
+  & > .out-of-stock {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 15px;
+    background-color: rgba(38, 38, 38, 0.7);
+    padding: 10px;
+    color: black;
+    left: 0;
+    right: 0;
+    top: 100px;
+    width: fit-content;
+    margin: auto;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.tag {
+  &-background {
+    border-radius: 4px;
+    background: rgba(110, 154, 242, 0.2);
+    padding: 3px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-text {
+    color: #6e9af2;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,35 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" mode="md" class="title">
+      <ion-back-button icon="chevron-back" defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title> {{ 'INBOX' | translate }} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let item of [1, 2, 3]" class="ion-padding-bottom link" [routerLink]="['/inbox', item, 'detail']">
+      <ion-col size="2" class="ion-align-self-center">
+        <ion-thumbnail class="thumb-notif">
+          <img src="assets/images/inbox-logo.svg" />
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col size="10">
+        <ion-row>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-text class="notif-title">New Member Registration</ion-text>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding truncate">
+            <ion-text class="notif-desc"
+              >Thank you for registering at Grocie. Please check your email for verification.
+            </ion-text>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-text class="notif-time"> {{ currentDate | date: 'medium' }}</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,17 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="md">
+      <ion-back-button icon="chevron-back" defaultHref="/tabs/home" icon="chevron-back-outline"> </ion-back-button>
+      <ion-title class="header-title">{{ title }}</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <img class="img-banner" src="assets/images/detail_image.jpg"/>
+
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-no-padding" size="3" *ngFor="let item of brands">
+      <app-card-brand [brand]="item"></app-card-brand>
+    </ion-col>
+  </ion-row>
+</ion-content>

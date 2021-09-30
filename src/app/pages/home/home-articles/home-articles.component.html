@@ -1,0 +1,16 @@
+<ion-row class="ion-padding ion-no-padding-bottom">
+  <ion-col size="8">
+    <ion-text class="section-title">{{ 'GROCIE_ARTICLE' | translate }}</ion-text>
+  </ion-col>
+  <ion-col size="4" class="ion-text-right link" [routerLink]="['/article/list']">
+    <ion-text class="section-see-all">{{ 'SEE_ALL' | translate }}</ion-text>
+  </ion-col>
+  <ion-col size="12" class="ion-padding-top">
+    <ion-text class="section-desc">{{ 'GROCIE_ARTICLE_DESC' | translate }}</ion-text>
+  </ion-col>
+</ion-row>
+<ion-row class="ion-padding-horizontal">
+  <ion-col size="12" *ngFor="let article of articles">
+    <app-card-article [article]="article"></app-card-article>
+  </ion-col>
+</ion-row>

@@ -1,0 +1,221 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" mode="md">
+      <ion-back-button icon="chevron-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ addressId ? ('UPDATE_ADDRESS' | translate) : ('ADD_NEW_ADDRESS' | translate) }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-margin-top ion-no-padding h-100">
+    <ion-row class="ion-justify-content-between">
+      <ion-col size="12">
+        <form [formGroup]="fg" *ngIf="fg">
+          <ion-item lines="none" class="form-group">
+            <ion-label position="stacked">{{ 'RECEIVER_NAME' | translate }}</ion-label>
+            <ion-input
+              class="default-theme"
+              placeholder="{{ 'RECEIVER_NAME_PLACEHOLDER' | translate }}"
+              type="text"
+              formControlName="receiver_name"
+            >
+            </ion-input>
+            <small *ngIf="fg.controls.receiver_name.dirty">
+              {{ fg.controls.receiver_name.errors?.required?.message }}
+            </small>
+          </ion-item>
+
+          <ion-item lines="none" class="form-group">
+            <ion-label position="stacked">{{ 'PHONE_NUMBER' | translate }}</ion-label>
+            <ion-input
+              class="default-theme"
+              placeholder="{{ 'PHONE_NUMBER_PLACEHOLDER' | translate }}"
+              type="tel"
+              formControlName="phone"
+            ></ion-input>
+            <small *ngIf="fg.controls.phone.dirty"
+              >{{ fg.controls.phone.errors?.required?.message }}
+              {{ fg.controls.phone.errors?.numeric?.message }}
+              {{ fg.controls.phone.errors?.minLength?.message }}
+              {{ fg.controls.phone.errors?.maxLength?.message }}</small
+            >
+          </ion-item>
+
+          <div class="divider"></div>
+
+          <ion-row class="ion-align-items-center ion-padding-horizontal ion-padding-bottom">
+            <ion-col size="6" class="ion-no-padding">
+              <ion-text>
+                <small>
+                  <b>{{ 'DELIVERY_ADDRESS' | translate }}</b>
+                </small>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6" class="ion-no-padding ion-text-right">
+              <ion-button fill="outline" size="small" color="primary" (click)="presentModalPinLocation()">
+                {{ 'PIN_LOCATION' | translate }}
+              </ion-button>
+            </ion-col>
+            <ion-col size="12" class="ion-no-padding">
+              <small>{{ fg.value.address }}</small>
+            </ion-col>
+          </ion-row>
+
+          <ion-item lines="none" class="form-group">
+            <ion-label position="stacked">{{ 'ADDRESS_DETAIL' | translate }}</ion-label>
+            <ion-textarea
+              placeholder="{{ 'ADDRESS_DETAIL_PLACEHOLDER' | translate }}"
+              formControlName="address_detail"
+              rows="6"
+            ></ion-textarea>
+            <ion-row class="ion-no-padding">
+              <ion-col size="6" class="ion-no-padding">
+                <small *ngIf="fg.controls.address_detail.dirty"
+                  >{{ fg.controls.address_detail.errors?.required?.message }}
+                  {{ fg.controls.address_detail.errors?.minLength?.message }}
+                  {{ fg.controls.address_detail.errors?.maxLength?.message }}</small
+                >
+              </ion-col>
+              <ion-col size="6" class="ion-no-padding ion-text-right">
+                <small class="count">{{ currentChar }} / 100</small>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+
+          <ion-row>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-item lines="none" class="form-group">
+                <ion-label position="stacked">{{ 'PROVINCE' | translate }}</ion-label>
+                <ion-select
+                  placeholder="{{ 'PROVINCE_PLACEHOLDER' | translate }}"
+                  formControlName="province_id"
+                  (ionChange)="onProvinceSelect($event?.detail?.value)"
+                >
+                  <ion-select-option *ngFor="let province of provinceList" [value]="province?.province_id">{{
+                    province?.name | titlecase
+                  }}</ion-select-option>
+                </ion-select>
+                <small *ngIf="fg.controls.province_id.touched">{{
+                  fg.controls.province_id.errors?.required?.message
+                }}</small>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-item lines="none" class="form-group">
+                <ion-label position="stacked">{{ 'CITY' | translate }}</ion-label>
+                <ion-select
+                  placeholder="{{ 'CITY_PLACEHOLDER' | translate }}"
+                  formControlName="city_id"
+                  (ionChange)="onCitySelect($event?.detail?.value)"
+                >
+                  <ion-select-option *ngFor="let city of cityList" [value]="city?.city_id">{{
+                    city?.name | titlecase
+                  }}</ion-select-option>
+                </ion-select>
+                <small *ngIf="fg.controls.city_id.touched">{{ fg.controls.city_id.errors?.required?.message }}</small>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-item lines="none" class="form-group">
+                <ion-label position="stacked">{{ 'DISTRICT' | translate }}</ion-label>
+                <ion-select
+                  placeholder="{{ 'DISTRICT_PLACEHOLDER' | translate }}"
+                  formControlName="district_id"
+                  (ionChange)="onDistrictSelect($event?.detail?.value)"
+                >
+                  <ion-select-option *ngFor="let district of districtList" [value]="district?.district_id">{{
+                    district?.name | titlecase
+                  }}</ion-select-option>
+                </ion-select>
+                <small *ngIf="fg.controls.district_id.touched">{{
+                  fg.controls.district_id.errors?.required?.message
+                }}</small>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-item lines="none" class="form-group">
+                <ion-label position="stacked">{{ 'SUB_DISTRICT' | translate }}</ion-label>
+                <ion-select
+                  class="custom-options"
+                  placeholder="{{ 'SUB_DISTRICT_PLACEHOLDER' | translate }}"
+                  formControlName="sub_district_id"
+                >
+                  <ion-select-option
+                    *ngFor="let subDistrict of subDistrictList"
+                    [value]="subDistrict?.sub_district_id"
+                    >{{ subDistrict?.name + '\n' + subDistrict?.postal_code | titlecase }}
+                    </ion-select-option
+                  >
+                </ion-select>
+                <small *ngIf="fg.controls.sub_district_id.touched">{{
+                  fg.controls.sub_district_id.errors?.required?.message
+                }}</small>
+              </ion-item>
+            </ion-col>
+            <!-- <ion-col size="6" class="ion-no-padding">
+              <ion-item lines="none" class="form-group">
+                <ion-label position="stacked">{{ 'POSTAL_CODE' | translate }}</ion-label>
+                <ion-input
+                  class="default-theme"
+                  placeholder="{{ 'POSTAL_CODE_PLACEHOLDER' | translate }}"
+                  type="number"
+                  formControlName="postal_code"
+                ></ion-input>
+                <small *ngIf="fg.controls.postal_code.dirty">{{
+                  fg.controls.postal_code.errors?.required?.message
+                }}</small>
+              </ion-item>
+            </ion-col> -->
+          </ion-row>
+
+          <ion-item lines="none" class="form-group">
+            <ion-label position="stacked">{{ 'ADDRESS_NAME' | translate }}</ion-label>
+            <ion-input
+              class="default-theme"
+              placeholder="{{ 'ADDRESS_NAME_PLACEHOLDER' | translate }}"
+              type="text"
+              formControlName="address_name"
+            >
+            </ion-input>
+            <small *ngIf="fg.controls.address_name.dirty">{{
+              fg.controls.address_name.errors?.required?.message
+            }}</small>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding-horizontal">
+  <ion-grid style="background: white;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-button
+          expand="block"
+          shape="round"
+          color="limegreen"
+          (click)="submit()"
+          [disabled]="fg?.invalid || isOnFetch"
+        >
+          {{ 'SAVE' | translate }} <ion-spinner *ngIf="isOnFetch" name="dots" color="dark"></ion-spinner>
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" *ngIf="addressId && !addressData?.is_default">
+        <ion-button
+          (click)="confirmDeleteAddress()"
+          expand="block"
+          fill="outline"
+          color="limegreen"
+          [disabled]="isOnFetch"
+        >
+          {{ 'DELETE_ADDRESS' | translate }} <ion-spinner *ngIf="isOnFetch" name="dots" color="dark"></ion-spinner>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

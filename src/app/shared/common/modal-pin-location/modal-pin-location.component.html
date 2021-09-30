@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true">
+  <ion-icon name="chevron-back-outline" (click)="dismiss()" class="back-button"></ion-icon>
+
+  <div class="map-search">
+    <ion-input placeholder="{{ 'SEARCH' | translate }}" #pacInput></ion-input>
+  </div>
+
+  <div class="map-wrapper">
+    <div #map id="map"></div>
+  </div>
+
+  <ion-card class="address-info">
+    <ion-card-content>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="2">
+          <ion-icon name="location-outline" color="primary"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <span>{{ geoAddressData?.formatted_address }}~</span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button (click)="pinLocation()" expand="block" shape="round" color="success" class="btn-pin">
+    {{ 'PIN_LOCATION' | translate }}
+  </ion-button>
+</ion-content>

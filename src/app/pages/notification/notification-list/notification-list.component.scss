@@ -1,0 +1,31 @@
+.thumb-notif {
+  display: block;
+  margin: auto;
+  width: 35px;
+  height: 35px;
+}
+
+.notif-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.notif-desc {
+  font-size: 14px;
+}
+
+.notif-time {
+  font-size: 12px;
+  color: gray;
+}
+
+.slide-order {
+  height: 92%;
+}
+
+ion-segment-button {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.17;
+  text-transform: capitalize;
+}

@@ -1,0 +1,8 @@
+{
+  "name": "grocie",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

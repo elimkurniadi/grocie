@@ -1,0 +1,207 @@
+.radio-wrapper {
+  border: none;
+  width: 100%;
+  padding: 0;
+  margin-top: 0.5em;
+  div {
+    margin: auto;
+    // padding-bottom: 1em;
+
+    .radio-label {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 4%;
+      padding-left: 10px;
+      font-size: 14px;
+    }
+    .radio-input {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+small {
+  color: var(--ion-color-primary);
+  padding: 4px 12px;
+  border-radius: 13px;
+  border: solid 1px var(--ion-color-primary);
+  background-color: #ffffff;
+  font-size: 11px;
+}
+
+.count {
+  color: var(--ion-color-medium);
+}
+
+.text {
+  &-address-info {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.17;
+    color: #353535;
+  }
+  &-address-detail {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: #353535;
+  }
+  &-payment-info {
+    font-size: 14px;
+    line-height: 1.17;
+    letter-spacing: normal;
+    color: #353535;
+  }
+  &-discount-info {
+    font-size: 14px;
+    line-height: 1.17;
+    color: #99cc33;
+  }
+  &-discount-price {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.17;
+    color: #99cc33;
+  }
+  &-payment-price {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.17;
+    color: #353535;
+  }
+}
+
+.used-voucher {
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  color: #262626;
+  border: none;
+}
+
+.delivery-chip {
+  color: #262626;
+  width: 100%;
+  padding: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  & span {
+    width: 100%;
+  }
+}
+
+.btn-selected-date {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.25;
+  --border-color: #99cc33;
+  --color: #262626 !important;
+}
+
+.date-selected {
+  color: #262626;
+  background-color: #99cc33;
+}
+
+.text-discount {
+  color: var(--ion-color-success);
+}
+
+.text-saving {
+  color: var(--ion-color-secondary);
+}
+
+.delivery-info {
+  background-color: var(--ion-color-light);
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 9px;
+}
+
+@media only screen and (max-width: 380px) {
+  .btn-selected-date {
+    font-size: 10px;
+  }
+
+  .delivery-location-btn {
+    font-size: 10px;
+  }
+
+  .text {
+    &-address-info {
+      font-size: 13px;
+    }
+    &-address-detail {
+      font-size: 13px;
+    }
+    &-payment-info {
+      font-size: 13px;
+    }
+    &-discount-info {
+      font-size: 13px;
+    }
+    &-discount-price {
+      font-size: 13px;
+    }
+    &-payment-price {
+      font-size: 13px;
+    }
+  }
+
+  .radio-wrapper {
+    div {
+      .radio-label {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .label-title {
+    font-size: 15px;
+  }
+
+  .delivery-chip {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .delivery-location-btn {
+    font-size: 8px;
+  }
+
+  .text {
+    &-address-info {
+      font-size: 12px;
+    }
+    &-address-detail {
+      font-size: 12px;
+    }
+    &-payment-info {
+      font-size: 12px;
+    }
+    &-discount-info {
+      font-size: 12px;
+    }
+    &-discount-price {
+      font-size: 12px;
+    }
+    &-payment-price {
+      font-size: 12px;
+    }
+  }
+
+  .radio-wrapper {
+    div {
+      .radio-label {
+        font-size: 12px;
+      }
+    }
+  }
+}
